@@ -20,20 +20,13 @@ BUSINESSES = [
     {"id": "gm-home-remodeling",       "bbb_url": "https://www.bbb.org/us/ca/sherman-oaks/profile/home-renovation/gm-home-remodeling-inc-1216-1000013059/customer-reviews"},
 ]
 
-MAX_RETRIES = 3
-RETRY_DELAY = 10
+RETRY_DELAY = 30
 
 
 def parse_reviews_from_text(text: str) -> dict:
-    """
-    BBB uses exactly two formats (confirmed from live pages):
-      - Has reviews:  "Average of 47 Customer Reviews"  +  "4.57/5 stars"
-      - No reviews:   "This business has 0 reviews"
-    """
     total_reviews = None
     average_rating = None
 
-    # Total reviews
     for pattern in [
         r"Average of ([\d,]+) Customer Review",
         r"This business has (\d+) review",
@@ -43,12 +36,25 @@ def parse_reviews_from_text(text: str) -> dict:
             total_reviews = m.group(1).replace(",", "")
             break
 
-    # Average rating (only present when there are reviews)
     m = re.search(r"([\d.]+)/5\s+stars?", text, re.IGNORECASE)
     if m:
         average_rating = m.group(1)
 
     return {"total_reviews": total_reviews, "average_rating": average_rating}
+
+
+def fetch_text(url: str, proxy: str) -> str:
+    """Fetch page text with given proxy type. Raises on failure."""
+    params = {
+        "api_key": API_KEY,
+        "url": url,
+        "js": "true",
+        "proxy": proxy,
+        "timeout": 30000,
+    }
+    response = requests.get(TEXT_URL, params=params, timeout=90)
+    response.raise_for_status()
+    return response.text
 
 
 def scrape_bbb(business: dict) -> dict:
@@ -58,43 +64,46 @@ def scrape_bbb(business: dict) -> dict:
 
     print(f"  [{business['id']}] Scraping ...")
 
-    params = {
-        "api_key": API_KEY,
-        "url": business["bbb_url"],
-        "js": "true",
-        "proxy": "residential",
-        "timeout": 30000,
-    }
+    # Try residential first (cheaper), then stealth if blocked
+    proxy_attempts = [
+        ("residential", 2),   # (proxy type, max tries)
+        ("stealth",     2),
+    ]
 
-    for attempt in range(1, MAX_RETRIES + 1):
-        try:
-            print(f"    Attempt {attempt}/{MAX_RETRIES} ...")
-            response = requests.get(TEXT_URL, params=params, timeout=90)
-            response.raise_for_status()
-            text = response.text
+    last_error = None
+    for proxy, tries in proxy_attempts:
+        for attempt in range(1, tries + 1):
+            try:
+                print(f"    [{proxy}] Attempt {attempt}/{tries} ...")
+                text = fetch_text(business["bbb_url"], proxy)
+                parsed = parse_reviews_from_text(text)
 
-            parsed = parse_reviews_from_text(text)
-            result = {
-                "id": business["id"],
-                "bbb_url": business["bbb_url"],
-                "total_reviews": parsed["total_reviews"],
-                "average_rating": parsed["average_rating"],
-                "error": None,
-            }
-            print(f"    ✓ Reviews: {result['total_reviews']} | Rating: {result['average_rating']}")
-            return result
+                if parsed["total_reviews"] is None and parsed["average_rating"] is None:
+                    snippet = " ".join(text.split())[:300]
+                    print(f"    ⚠ Page loaded but could not parse data. Snippet: {snippet}")
 
-        except requests.exceptions.RequestException as e:
-            print(f"    ✗ Attempt {attempt} failed: {e}")
-            if attempt < MAX_RETRIES:
-                print(f"    Retrying in {RETRY_DELAY}s ...")
-                time.sleep(RETRY_DELAY)
-            else:
-                return {"id": business["id"], "bbb_url": business["bbb_url"], "total_reviews": None, "average_rating": None, "error": str(e)}
+                result = {
+                    "id": business["id"],
+                    "bbb_url": business["bbb_url"],
+                    "total_reviews": parsed["total_reviews"],
+                    "average_rating": parsed["average_rating"],
+                    "error": None,
+                }
+                print(f"    ✓ Reviews: {result['total_reviews']} | Rating: {result['average_rating']}")
+                return result
 
-        except Exception as e:
-            print(f"    ✗ Unexpected error: {e}")
-            return {"id": business["id"], "bbb_url": business["bbb_url"], "total_reviews": None, "average_rating": None, "error": str(e)}
+            except requests.exceptions.RequestException as e:
+                last_error = str(e)
+                print(f"    ✗ [{proxy}] Attempt {attempt} failed: {e}")
+                if attempt < tries:
+                    print(f"    Retrying in {RETRY_DELAY}s ...")
+                    time.sleep(RETRY_DELAY)
+
+        print(f"    Switching to next proxy type ...")
+        time.sleep(RETRY_DELAY)
+
+    print(f"    ✗ All proxy attempts exhausted.")
+    return {"id": business["id"], "bbb_url": business["bbb_url"], "total_reviews": None, "average_rating": None, "error": last_error}
 
 
 def main():
@@ -104,7 +113,7 @@ def main():
     for business in BUSINESSES:
         result = scrape_bbb(business)
         results.append(result)
-        time.sleep(3)
+        time.sleep(8)
 
     output_file = "bbb_reviews.json"
     with open(output_file, "w", encoding="utf-8") as f:
