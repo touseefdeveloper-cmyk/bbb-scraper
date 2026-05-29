@@ -1,1 +1,72 @@
-[]
+[
+  {
+    "id": "cabinet-refresh",
+    "bbb_url": "https://www.bbb.org/us/ca/los-angeles/profile/sales/cabinet-refresh-1216-1000057905/customer-reviews",
+    "total_reviews": null,
+    "average_rating": null,
+    "error": "500 Server Error: Internal Server Error for url: https://api.webscraping.ai/ai/fields?api_key=4f671e72-1a75-455b-955a-6362892454e9&url=https%3A%2F%2Fwww.bbb.org%2Fus%2Fca%2Flos-angeles%2Fprofile%2Fsales%2Fcabinet-refresh-1216-1000057905%2Fcustomer-reviews&fields%5Btotal_reviews%5D=Total+number+of+customer+reviews+on+this+page+%28just+the+number%29&fields%5Baverage_rating%5D=Average+customer+star+rating+%28e.g.+4.5+out+of+5%29&js=true&proxy=datacenter"
+  },
+  {
+    "id": "american-vision-windows",
+    "bbb_url": "https://www.bbb.org/us/ca/simi-valley/profile/windows/american-vision-windows-1236-3000957/customer-reviews",
+    "total_reviews": null,
+    "average_rating": null,
+    "error": "500 Server Error: Internal Server Error for url: https://api.webscraping.ai/ai/fields?api_key=4f671e72-1a75-455b-955a-6362892454e9&url=https%3A%2F%2Fwww.bbb.org%2Fus%2Fca%2Fsimi-valley%2Fprofile%2Fwindows%2Famerican-vision-windows-1236-3000957%2Fcustomer-reviews&fields%5Btotal_reviews%5D=Total+number+of+customer+reviews+on+this+page+%28just+the+number%29&fields%5Baverage_rating%5D=Average+customer+star+rating+%28e.g.+4.5+out+of+5%29&js=true&proxy=datacenter"
+  },
+  {
+    "id": "one-week-bath",
+    "bbb_url": "https://www.bbb.org/us/ca/van-nuys/profile/bathroom-remodel/one-week-bath-inc-1216-13044203/customer-reviews",
+    "total_reviews": null,
+    "average_rating": null,
+    "error": "500 Server Error: Internal Server Error for url: https://api.webscraping.ai/ai/fields?api_key=4f671e72-1a75-455b-955a-6362892454e9&url=https%3A%2F%2Fwww.bbb.org%2Fus%2Fca%2Fvan-nuys%2Fprofile%2Fbathroom-remodel%2Fone-week-bath-inc-1216-13044203%2Fcustomer-reviews&fields%5Btotal_reviews%5D=Total+number+of+customer+reviews+on+this+page+%28just+the+number%29&fields%5Baverage_rating%5D=Average+customer+star+rating+%28e.g.+4.5+out+of+5%29&js=true&proxy=datacenter"
+  },
+  {
+    "id": "abc-pro",
+    "bbb_url": "https://www.bbb.org/us/ca/van-nuys/profile/general-contractor/abraham-building-consulting-1216-885407/customer-reviews",
+    "total_reviews": null,
+    "average_rating": null,
+    "error": "500 Server Error: Internal Server Error for url: https://api.webscraping.ai/ai/fields?api_key=4f671e72-1a75-455b-955a-6362892454e9&url=https%3A%2F%2Fwww.bbb.org%2Fus%2Fca%2Fvan-nuys%2Fprofile%2Fgeneral-contractor%2Fabraham-building-consulting-1216-885407%2Fcustomer-reviews&fields%5Btotal_reviews%5D=Total+number+of+customer+reviews+on+this+page+%28just+the+number%29&fields%5Baverage_rating%5D=Average+customer+star+rating+%28e.g.+4.5+out+of+5%29&js=true&proxy=datacenter"
+  },
+  {
+    "id": "1-degree-construction",
+    "bbb_url": "https://www.bbb.org/us/ca/anaheim/profile/general-contractor/the-original-mr-cabinet-care-1126-50066/customer-reviews",
+    "total_reviews": null,
+    "average_rating": null,
+    "error": "500 Server Error: Internal Server Error for url: https://api.webscraping.ai/ai/fields?api_key=4f671e72-1a75-455b-955a-6362892454e9&url=https%3A%2F%2Fwww.bbb.org%2Fus%2Fca%2Fanaheim%2Fprofile%2Fgeneral-contractor%2Fthe-original-mr-cabinet-care-1126-50066%2Fcustomer-reviews&fields%5Btotal_reviews%5D=Total+number+of+customer+reviews+on+this+page+%28just+the+number%29&fields%5Baverage_rating%5D=Average+customer+star+rating+%28e.g.+4.5+out+of+5%29&js=true&proxy=datacenter"
+  },
+  {
+    "id": "mr-cabinet-care",
+    "bbb_url": null,
+    "total_reviews": null,
+    "average_rating": null,
+    "error": "No URL provided"
+  },
+  {
+    "id": "payless-kitchen-cabinets",
+    "bbb_url": "https://www.bbb.org/ca/on/etobicoke/profile/kitchen-remodel/payless-kitchen-cabinets-ltd-0107-1234459/customer-reviews",
+    "total_reviews": null,
+    "average_rating": null,
+    "error": "500 Server Error: Internal Server Error for url: https://api.webscraping.ai/ai/fields?api_key=4f671e72-1a75-455b-955a-6362892454e9&url=https%3A%2F%2Fwww.bbb.org%2Fca%2Fon%2Fetobicoke%2Fprofile%2Fkitchen-remodel%2Fpayless-kitchen-cabinets-ltd-0107-1234459%2Fcustomer-reviews&fields%5Btotal_reviews%5D=Total+number+of+customer+reviews+on+this+page+%28just+the+number%29&fields%5Baverage_rating%5D=Average+customer+star+rating+%28e.g.+4.5+out+of+5%29&js=true&proxy=datacenter"
+  },
+  {
+    "id": "payless-bath-makeover",
+    "bbb_url": "https://www.bbb.org/ca/on/etobicoke/profile/kitchen-remodel/payless-kitchen-cabinets-ltd-0107-1234459/customer-reviews",
+    "total_reviews": null,
+    "average_rating": null,
+    "error": "500 Server Error: Internal Server Error for url: https://api.webscraping.ai/ai/fields?api_key=4f671e72-1a75-455b-955a-6362892454e9&url=https%3A%2F%2Fwww.bbb.org%2Fca%2Fon%2Fetobicoke%2Fprofile%2Fkitchen-remodel%2Fpayless-kitchen-cabinets-ltd-0107-1234459%2Fcustomer-reviews&fields%5Btotal_reviews%5D=Total+number+of+customer+reviews+on+this+page+%28just+the+number%29&fields%5Baverage_rating%5D=Average+customer+star+rating+%28e.g.+4.5+out+of+5%29&js=true&proxy=datacenter"
+  },
+  {
+    "id": "adar-builders",
+    "bbb_url": "https://www.bbb.org/us/ca/winnetka/profile/roofing-contractors/adar-builders-inc-1216-1000035931/customer-reviews",
+    "total_reviews": null,
+    "average_rating": null,
+    "error": "500 Server Error: Internal Server Error for url: https://api.webscraping.ai/ai/fields?api_key=4f671e72-1a75-455b-955a-6362892454e9&url=https%3A%2F%2Fwww.bbb.org%2Fus%2Fca%2Fwinnetka%2Fprofile%2Froofing-contractors%2Fadar-builders-inc-1216-1000035931%2Fcustomer-reviews&fields%5Btotal_reviews%5D=Total+number+of+customer+reviews+on+this+page+%28just+the+number%29&fields%5Baverage_rating%5D=Average+customer+star+rating+%28e.g.+4.5+out+of+5%29&js=true&proxy=datacenter"
+  },
+  {
+    "id": "gm-home-remodeling",
+    "bbb_url": "https://www.bbb.org/us/ca/sherman-oaks/profile/home-renovation/gm-home-remodeling-inc-1216-1000013059/customer-reviews",
+    "total_reviews": null,
+    "average_rating": null,
+    "error": "500 Server Error: Internal Server Error for url: https://api.webscraping.ai/ai/fields?api_key=4f671e72-1a75-455b-955a-6362892454e9&url=https%3A%2F%2Fwww.bbb.org%2Fus%2Fca%2Fsherman-oaks%2Fprofile%2Fhome-renovation%2Fgm-home-remodeling-inc-1216-1000013059%2Fcustomer-reviews&fields%5Btotal_reviews%5D=Total+number+of+customer+reviews+on+this+page+%28just+the+number%29&fields%5Baverage_rating%5D=Average+customer+star+rating+%28e.g.+4.5+out+of+5%29&js=true&proxy=datacenter"
+  }
+]
