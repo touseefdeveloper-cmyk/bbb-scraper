@@ -2,9 +2,10 @@ import requests
 import json
 import time
 import os
+import re
 
 API_KEY = os.environ.get("WEBSCRAPING_AI_KEY", "")
-API_URL = "https://api.webscraping.ai/ai/fields"
+TEXT_URL = "https://api.webscraping.ai/text"
 
 BUSINESSES = [
     {"id": "cabinet-refresh",          "bbb_url": "https://www.bbb.org/us/ca/los-angeles/profile/sales/cabinet-refresh-1216-1000057905/customer-reviews"},
@@ -20,7 +21,41 @@ BUSINESSES = [
 ]
 
 MAX_RETRIES = 3
-RETRY_DELAY = 10  # seconds between retries
+RETRY_DELAY = 10
+
+
+def parse_reviews_from_text(text: str) -> dict:
+    """Extract total_reviews and average_rating from BBB page plain text."""
+    total_reviews = None
+    average_rating = None
+
+    # Match: "This business has 0 reviews" or "Average of X Customer Reviews"
+    count_patterns = [
+        r"This business has (\d+) review",
+        r"Average of ([\d,]+) Customer Review",
+        r"([\d,]+)\s+Customer Review",
+        r"([\d,]+)\s+review",
+    ]
+    for pattern in count_patterns:
+        match = re.search(pattern, text, re.IGNORECASE)
+        if match:
+            total_reviews = match.group(1).replace(",", "")
+            break
+
+    # Match: "4.5/5" or "4.5 out of 5" or "4.5 stars"
+    rating_patterns = [
+        r"([\d.]+)\s*/\s*5",
+        r"([\d.]+)\s+out of\s+5",
+        r"([\d.]+)\s+stars?",
+        r"Average Rating:\s*([\d.]+)",
+    ]
+    for pattern in rating_patterns:
+        match = re.search(pattern, text, re.IGNORECASE)
+        if match:
+            average_rating = match.group(1)
+            break
+
+    return {"total_reviews": total_reviews, "average_rating": average_rating}
 
 
 def scrape_bbb(business: dict) -> dict:
@@ -33,25 +68,24 @@ def scrape_bbb(business: dict) -> dict:
     params = {
         "api_key": API_KEY,
         "url": business["bbb_url"],
-        "fields[total_reviews]": "Total number of customer reviews on this page (just the number)",
-        "fields[average_rating]": "Average customer star rating (e.g. 4.5 out of 5)",
         "js": "true",
-        "proxy": "residential",   # Residential proxies bypass BBB bot protection
-        "timeout": 30000,         # 30 second page load timeout (milliseconds)
+        "proxy": "residential",
+        "timeout": 30000,
     }
 
     for attempt in range(1, MAX_RETRIES + 1):
         try:
             print(f"    Attempt {attempt}/{MAX_RETRIES} ...")
-            response = requests.get(API_URL, params=params, timeout=90)
+            response = requests.get(TEXT_URL, params=params, timeout=90)
             response.raise_for_status()
-            data = response.json()
+            text = response.text
 
+            parsed = parse_reviews_from_text(text)
             result = {
                 "id": business["id"],
                 "bbb_url": business["bbb_url"],
-                "total_reviews": data.get("total_reviews"),
-                "average_rating": data.get("average_rating"),
+                "total_reviews": parsed["total_reviews"],
+                "average_rating": parsed["average_rating"],
                 "error": None,
             }
             print(f"    ✓ Reviews: {result['total_reviews']} | Rating: {result['average_rating']}")
@@ -77,7 +111,7 @@ def main():
     for business in BUSINESSES:
         result = scrape_bbb(business)
         results.append(result)
-        time.sleep(3)  # polite delay between requests
+        time.sleep(3)
 
     output_file = "bbb_reviews.json"
     with open(output_file, "w", encoding="utf-8") as f:
