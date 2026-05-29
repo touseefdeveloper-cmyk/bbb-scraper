@@ -19,43 +19,55 @@ BUSINESSES = [
     {"id": "gm-home-remodeling",       "bbb_url": "https://www.bbb.org/us/ca/sherman-oaks/profile/home-renovation/gm-home-remodeling-inc-1216-1000013059/customer-reviews"},
 ]
 
+MAX_RETRIES = 3
+RETRY_DELAY = 10  # seconds between retries
+
 
 def scrape_bbb(business: dict) -> dict:
     if not business["bbb_url"]:
         print(f"  [{business['id']}] Skipped — no URL provided.")
         return {"id": business["id"], "bbb_url": None, "total_reviews": None, "average_rating": None, "error": "No URL provided"}
 
-    print(f"  [{business['id']}] Scraping {business['bbb_url']} ...")
+    print(f"  [{business['id']}] Scraping ...")
+
     params = {
         "api_key": API_KEY,
         "url": business["bbb_url"],
         "fields[total_reviews]": "Total number of customer reviews on this page (just the number)",
         "fields[average_rating]": "Average customer star rating (e.g. 4.5 out of 5)",
-        "js": "true",   # BBB requires JS rendering
-        "proxy": "datacenter",
+        "js": "true",
+        "proxy": "residential",   # Residential proxies bypass BBB bot protection
+        "timeout": 30000,         # 30 second page load timeout (milliseconds)
     }
 
-    try:
-        response = requests.get(API_URL, params=params, timeout=60)
-        response.raise_for_status()
-        data = response.json()
+    for attempt in range(1, MAX_RETRIES + 1):
+        try:
+            print(f"    Attempt {attempt}/{MAX_RETRIES} ...")
+            response = requests.get(API_URL, params=params, timeout=90)
+            response.raise_for_status()
+            data = response.json()
 
-        result = {
-            "id": business["id"],
-            "bbb_url": business["bbb_url"],
-            "total_reviews": data.get("total_reviews"),
-            "average_rating": data.get("average_rating"),
-            "error": None,
-        }
-        print(f"    ✓ Reviews: {result['total_reviews']} | Rating: {result['average_rating']}")
-        return result
+            result = {
+                "id": business["id"],
+                "bbb_url": business["bbb_url"],
+                "total_reviews": data.get("total_reviews"),
+                "average_rating": data.get("average_rating"),
+                "error": None,
+            }
+            print(f"    ✓ Reviews: {result['total_reviews']} | Rating: {result['average_rating']}")
+            return result
 
-    except requests.exceptions.RequestException as e:
-        print(f"    ✗ Request error: {e}")
-        return {"id": business["id"], "bbb_url": business["bbb_url"], "total_reviews": None, "average_rating": None, "error": str(e)}
-    except Exception as e:
-        print(f"    ✗ Unexpected error: {e}")
-        return {"id": business["id"], "bbb_url": business["bbb_url"], "total_reviews": None, "average_rating": None, "error": str(e)}
+        except requests.exceptions.RequestException as e:
+            print(f"    ✗ Attempt {attempt} failed: {e}")
+            if attempt < MAX_RETRIES:
+                print(f"    Retrying in {RETRY_DELAY}s ...")
+                time.sleep(RETRY_DELAY)
+            else:
+                return {"id": business["id"], "bbb_url": business["bbb_url"], "total_reviews": None, "average_rating": None, "error": str(e)}
+
+        except Exception as e:
+            print(f"    ✗ Unexpected error: {e}")
+            return {"id": business["id"], "bbb_url": business["bbb_url"], "total_reviews": None, "average_rating": None, "error": str(e)}
 
 
 def main():
@@ -65,7 +77,7 @@ def main():
     for business in BUSINESSES:
         result = scrape_bbb(business)
         results.append(result)
-        time.sleep(1)  # polite delay between requests
+        time.sleep(3)  # polite delay between requests
 
     output_file = "bbb_reviews.json"
     with open(output_file, "w", encoding="utf-8") as f:
