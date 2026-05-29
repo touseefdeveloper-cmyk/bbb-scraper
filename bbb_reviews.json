@@ -2,7 +2,7 @@
   {
     "id": "cabinet-refresh",
     "bbb_url": "https://www.bbb.org/us/ca/los-angeles/profile/sales/cabinet-refresh-1216-1000057905/customer-reviews",
-    "total_reviews": null,
+    "total_reviews": "0",
     "average_rating": null,
     "error": null
   },
@@ -11,7 +11,7 @@
     "bbb_url": "https://www.bbb.org/us/ca/simi-valley/profile/windows/american-vision-windows-1236-3000957/customer-reviews",
     "total_reviews": null,
     "average_rating": null,
-    "error": null
+    "error": "500 Server Error: Internal Server Error for url: https://api.webscraping.ai/text?api_key=4f671e72-1a75-455b-955a-6362892454e9&url=https%3A%2F%2Fwww.bbb.org%2Fus%2Fca%2Fsimi-valley%2Fprofile%2Fwindows%2Famerican-vision-windows-1236-3000957%2Fcustomer-reviews&js=true&proxy=residential&timeout=30000"
   },
   {
     "id": "one-week-bath",
@@ -23,14 +23,14 @@
   {
     "id": "abc-pro",
     "bbb_url": "https://www.bbb.org/us/ca/van-nuys/profile/general-contractor/abraham-building-consulting-1216-885407/customer-reviews",
-    "total_reviews": null,
+    "total_reviews": "0",
     "average_rating": null,
     "error": null
   },
   {
     "id": "1-degree-construction",
     "bbb_url": "https://www.bbb.org/us/ca/anaheim/profile/general-contractor/the-original-mr-cabinet-care-1126-50066/customer-reviews",
-    "total_reviews": null,
+    "total_reviews": "0",
     "average_rating": null,
     "error": null
   },
@@ -44,29 +44,29 @@
   {
     "id": "payless-kitchen-cabinets",
     "bbb_url": "https://www.bbb.org/ca/on/etobicoke/profile/kitchen-remodel/payless-kitchen-cabinets-ltd-0107-1234459/customer-reviews",
-    "total_reviews": null,
+    "total_reviews": "0",
     "average_rating": null,
     "error": null
   },
   {
     "id": "payless-bath-makeover",
     "bbb_url": "https://www.bbb.org/ca/on/etobicoke/profile/kitchen-remodel/payless-kitchen-cabinets-ltd-0107-1234459/customer-reviews",
-    "total_reviews": null,
+    "total_reviews": "0",
     "average_rating": null,
     "error": null
   },
   {
     "id": "adar-builders",
     "bbb_url": "https://www.bbb.org/us/ca/winnetka/profile/roofing-contractors/adar-builders-inc-1216-1000035931/customer-reviews",
-    "total_reviews": null,
-    "average_rating": null,
+    "total_reviews": "1",
+    "average_rating": "1",
     "error": null
   },
   {
     "id": "gm-home-remodeling",
     "bbb_url": "https://www.bbb.org/us/ca/sherman-oaks/profile/home-renovation/gm-home-remodeling-inc-1216-1000013059/customer-reviews",
-    "total_reviews": null,
-    "average_rating": null,
+    "total_reviews": "1",
+    "average_rating": "1",
     "error": null
   }
 ]
