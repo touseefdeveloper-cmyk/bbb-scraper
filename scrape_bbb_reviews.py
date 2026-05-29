@@ -25,35 +25,28 @@ RETRY_DELAY = 10
 
 
 def parse_reviews_from_text(text: str) -> dict:
-    """Extract total_reviews and average_rating from BBB page plain text."""
+    """
+    BBB uses exactly two formats (confirmed from live pages):
+      - Has reviews:  "Average of 47 Customer Reviews"  +  "4.57/5 stars"
+      - No reviews:   "This business has 0 reviews"
+    """
     total_reviews = None
     average_rating = None
 
-    # Match: "This business has 0 reviews" or "Average of X Customer Reviews"
-    count_patterns = [
-        r"This business has (\d+) review",
+    # Total reviews
+    for pattern in [
         r"Average of ([\d,]+) Customer Review",
-        r"([\d,]+)\s+Customer Review",
-        r"([\d,]+)\s+review",
-    ]
-    for pattern in count_patterns:
-        match = re.search(pattern, text, re.IGNORECASE)
-        if match:
-            total_reviews = match.group(1).replace(",", "")
+        r"This business has (\d+) review",
+    ]:
+        m = re.search(pattern, text, re.IGNORECASE)
+        if m:
+            total_reviews = m.group(1).replace(",", "")
             break
 
-    # Match: "4.5/5" or "4.5 out of 5" or "4.5 stars"
-    rating_patterns = [
-        r"([\d.]+)\s*/\s*5",
-        r"([\d.]+)\s+out of\s+5",
-        r"([\d.]+)\s+stars?",
-        r"Average Rating:\s*([\d.]+)",
-    ]
-    for pattern in rating_patterns:
-        match = re.search(pattern, text, re.IGNORECASE)
-        if match:
-            average_rating = match.group(1)
-            break
+    # Average rating (only present when there are reviews)
+    m = re.search(r"([\d.]+)/5\s+stars?", text, re.IGNORECASE)
+    if m:
+        average_rating = m.group(1)
 
     return {"total_reviews": total_reviews, "average_rating": average_rating}
 
