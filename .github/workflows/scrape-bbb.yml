@@ -5,9 +5,14 @@ on:
     - cron: "0 8 * * 1"   # Every Monday at 8:00 AM UTC
   workflow_dispatch:       # Also allows you to run it manually from GitHub
 
+permissions:
+  contents: write          # Allows the workflow to commit and push
+
 jobs:
   scrape:
     runs-on: ubuntu-latest
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true   # Suppress Node.js warning
 
     steps:
       - name: Checkout repository
