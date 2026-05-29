@@ -9,14 +9,14 @@
   {
     "id": "american-vision-windows",
     "bbb_url": "https://www.bbb.org/us/ca/simi-valley/profile/windows/american-vision-windows-1236-3000957/customer-reviews",
-    "total_reviews": null,
-    "average_rating": null,
-    "error": "500 Server Error: Internal Server Error for url: https://api.webscraping.ai/text?api_key=4f671e72-1a75-455b-955a-6362892454e9&url=https%3A%2F%2Fwww.bbb.org%2Fus%2Fca%2Fsimi-valley%2Fprofile%2Fwindows%2Famerican-vision-windows-1236-3000957%2Fcustomer-reviews&js=true&proxy=residential&timeout=30000"
+    "total_reviews": "31",
+    "average_rating": "4.73",
+    "error": null
   },
   {
     "id": "one-week-bath",
     "bbb_url": "https://www.bbb.org/us/ca/van-nuys/profile/bathroom-remodel/one-week-bath-inc-1216-13044203/customer-reviews",
-    "total_reviews": null,
+    "total_reviews": "0",
     "average_rating": null,
     "error": null
   },
@@ -58,8 +58,8 @@
   {
     "id": "adar-builders",
     "bbb_url": "https://www.bbb.org/us/ca/winnetka/profile/roofing-contractors/adar-builders-inc-1216-1000035931/customer-reviews",
-    "total_reviews": "1",
-    "average_rating": "1",
+    "total_reviews": null,
+    "average_rating": null,
     "error": null
   },
   {
