@@ -14,8 +14,8 @@ BUSINESSES = [
     {"id": "abc-pro",                  "bbb_url": "https://www.bbb.org/us/ca/van-nuys/profile/general-contractor/abraham-building-consulting-1216-885407/customer-reviews"},
     {"id": "1-degree-construction",    "bbb_url": "https://www.bbb.org/us/ca/los-angeles/profile/construction/1-degree-construction-inc-1216-1000023536/customer-reviews"},
     {"id": "mr-cabinet-care",          "bbb_url": "https://www.bbb.org/us/ca/anaheim/profile/general-contractor/the-original-mr-cabinet-care-1126-50066/customer-reviews"},
-    {"id": "payless-kitchen-cabinets", "bbb_url": "https://www.bbb.org/ca/on/etobicoke/profile/kitchen-remodel/payless-kitchen-cabinets-ltd-0107-1234459/customer-reviews"},
-    {"id": "payless-bath-makeover",    "bbb_url": "https://www.bbb.org/ca/on/etobicoke/profile/kitchen-remodel/payless-kitchen-cabinets-ltd-0107-1234459/customer-reviews"},
+    {"id": "payless-kitchen-cabinets", "bbb_url": "https://www.bbb.org/us/ca/glendale/profile/floor-coverings/carpet-wagon-glendale-inc-1216-22000132/customer-reviews"},
+    {"id": "payless-bath-makeover",    "bbb_url": "https://www.bbb.org/us/ca/glendale/profile/floor-coverings/carpet-wagon-glendale-inc-1216-22000132/customer-reviews"},
     {"id": "adar-builders",            "bbb_url": "https://www.bbb.org/us/ca/winnetka/profile/roofing-contractors/adar-builders-inc-1216-1000035931/customer-reviews"},
     {"id": "gm-home-remodeling",       "bbb_url": "https://www.bbb.org/us/ca/sherman-oaks/profile/home-renovation/gm-home-remodeling-inc-1216-1000013059/customer-reviews"},
 ]
