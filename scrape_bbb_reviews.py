@@ -51,6 +51,8 @@ def fetch_text(url: str, proxy: str) -> str:
         "js": "true",
         "proxy": proxy,
         "timeout": 30000,
+        "country": "us",
+        "wait_for": "h2",   # wait until page content headings are rendered
     }
     response = requests.get(TEXT_URL, params=params, timeout=90)
     response.raise_for_status()
