@@ -10,7 +10,7 @@
     "id": "american-vision-windows",
     "bbb_url": "https://www.bbb.org/us/ca/simi-valley/profile/windows/american-vision-windows-1236-3000957/customer-reviews",
     "total_reviews": "33",
-    "average_rating": "4.75",
+    "average_rating": "4.76",
     "error": null
   },
   {
@@ -29,30 +29,30 @@
   },
   {
     "id": "1-degree-construction",
-    "bbb_url": "https://www.bbb.org/us/ca/anaheim/profile/general-contractor/the-original-mr-cabinet-care-1126-50066/customer-reviews",
+    "bbb_url": "https://www.bbb.org/us/ca/los-angeles/profile/construction/1-degree-construction-inc-1216-1000023536/customer-reviews",
     "total_reviews": "0",
     "average_rating": null,
     "error": null
   },
   {
     "id": "mr-cabinet-care",
-    "bbb_url": null,
-    "total_reviews": null,
-    "average_rating": null,
-    "error": "No URL provided"
-  },
-  {
-    "id": "payless-kitchen-cabinets",
-    "bbb_url": "https://www.bbb.org/ca/on/etobicoke/profile/kitchen-remodel/payless-kitchen-cabinets-ltd-0107-1234459/customer-reviews",
+    "bbb_url": "https://www.bbb.org/us/ca/anaheim/profile/general-contractor/the-original-mr-cabinet-care-1126-50066/customer-reviews",
     "total_reviews": "0",
     "average_rating": null,
     "error": null
   },
   {
+    "id": "payless-kitchen-cabinets",
+    "bbb_url": "https://www.bbb.org/us/ca/glendale/profile/floor-coverings/carpet-wagon-glendale-inc-1216-22000132/customer-reviews",
+    "total_reviews": "21",
+    "average_rating": "4.33",
+    "error": null
+  },
+  {
     "id": "payless-bath-makeover",
-    "bbb_url": "https://www.bbb.org/ca/on/etobicoke/profile/kitchen-remodel/payless-kitchen-cabinets-ltd-0107-1234459/customer-reviews",
-    "total_reviews": "0",
-    "average_rating": null,
+    "bbb_url": "https://www.bbb.org/us/ca/glendale/profile/floor-coverings/carpet-wagon-glendale-inc-1216-22000132/customer-reviews",
+    "total_reviews": "21",
+    "average_rating": "4.33",
     "error": null
   },
   {
