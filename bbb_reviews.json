@@ -9,7 +9,7 @@
   {
     "id": "american-vision-windows",
     "bbb_url": "https://www.bbb.org/us/ca/simi-valley/profile/windows/american-vision-windows-1236-3000957/customer-reviews",
-    "total_reviews": "33",
+    "total_reviews": "34",
     "average_rating": "4.76",
     "error": null
   },
@@ -44,15 +44,15 @@
   {
     "id": "payless-kitchen-cabinets",
     "bbb_url": "https://www.bbb.org/us/ca/glendale/profile/floor-coverings/carpet-wagon-glendale-inc-1216-22000132/customer-reviews",
-    "total_reviews": "21",
-    "average_rating": "4.33",
+    "total_reviews": null,
+    "average_rating": null,
     "error": null
   },
   {
     "id": "payless-bath-makeover",
     "bbb_url": "https://www.bbb.org/us/ca/glendale/profile/floor-coverings/carpet-wagon-glendale-inc-1216-22000132/customer-reviews",
-    "total_reviews": "21",
-    "average_rating": "4.33",
+    "total_reviews": "22",
+    "average_rating": "4.36",
     "error": null
   },
   {
